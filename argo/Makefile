@@ -17,7 +17,7 @@ install-argocd:
 	kubectl create namespace argocd
 	kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 	kubectl apply -n argocd -f app-of-apps.yaml
-	kubectl wait -n argocd --selector=app.kubernetes.io/part-of=argocd deployment --for=condition=available
+	kubectl wait -n argocd --selector=app.kubernetes.io/part-of=argocd deployment --for=condition=available --timeout=180s
 
 
 setup-argo: create-cluster deploy-nginx install-gitea install-argocd

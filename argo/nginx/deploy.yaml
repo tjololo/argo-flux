@@ -35,7 +35,7 @@ metadata:
     app.kubernetes.io/component: controller
   name: ingress-nginx-controller
   namespace: ingress-nginx
-data:
+data: {}
 ---
 # Source: ingress-nginx/templates/clusterrole.yaml
 apiVersion: rbac.authorization.k8s.io/v1
