@@ -1,10 +1,10 @@
 # Argocd
 
 ## Resources
-[kind](https://kind.sigs.k8s.io/)
-[Gitea](https://gitea.io/en-us/)
-[ArgoCD](https://argoproj.github.io/argo-cd/)
-[Automating Kubernetes Multi-Cluster Config With Argo CD](https://argoproj.github.io/argo-cd/)
+* [kind](https://kind.sigs.k8s.io/)
+* [Gitea](https://gitea.io/en-us/)
+* [ArgoCD](https://argoproj.github.io/argo-cd/)
+* [Automating Kubernetes Multi-Cluster Config With Argo CD](https://argoproj.github.io/argo-cd/)
 
 ## Usage
 ### Prerequisites
