@@ -1,4 +1,4 @@
-create-cluster:
+setup-cluster:
 	kind create cluster --config install/kind-config.yaml --name argo
 	kubectl cluster-info --context kind-argo
 
@@ -25,7 +25,7 @@ print-credentials:
 	@echo "Argocd url: https://argocd.127.0.0.1.xip.io"
 	@echo Argocd login. Username: admin Password: $(shell kubectl -n argocd get pods -l app.kubernetes.io/name=argocd-server -o template --template '{{ range .items }}{{ .metadata.name }} {{end}}')
 
-create-cluster: create-cluster deploy-nginx install-gitea install-argocd print-credentials
+create-cluster: setup-cluster deploy-nginx install-gitea install-argocd print-credentials
 
 ## Cleanup
 delete-cluster:

@@ -1,4 +1,4 @@
-create-cluster:
+setup-cluster:
 	kind create cluster --config install/kind-config.yaml --name flux
 	kubectl cluster-info --context kind-flux
 
@@ -18,7 +18,7 @@ install-flux:
 	fluxctl install \
 	--git-user=demo \
 	--git-email=demo@example.local \
-	--git-url=git@gitea-gitea-http.default.svc.cluster.local:3000/demo/argo-flux \
+	--git-url=git@gitea-gitea-ssh.default.svc.cluster.local/demo/argo-flux \
 	--git-path=flux/apps \
 	--namespace=flux | kubectl apply -f -
 	##TODO: add wait command
@@ -27,7 +27,7 @@ print-credentials:
 	@echo "Demo cluster is ready. Gitea url: http://gitea.127.0.0.1.xip.io"
 	@echo "Gitea login. Username: demo Passord: Password#1"
 
-create-cluster: create-cluster deploy-nginx install-gitea install-flux print-credentials
+create-cluster: setup-cluster deploy-nginx install-gitea install-flux print-credentials
 
 ## Cleanup
 delete-cluster:
