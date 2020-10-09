@@ -1,2 +1,5 @@
 ingress:
   hostname: gitea.127.0.0.1.xip.io
+service:
+  ssh:
+    serviceType: ClusterIP

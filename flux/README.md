@@ -1,8 +1,4 @@
 # Fluxcd
-__WorkInProgress__ 
-
-__NotTested__
-
 This setup is by no means production ready and is only ment for testing fluxcd on your local machine.
 
 ## Resources

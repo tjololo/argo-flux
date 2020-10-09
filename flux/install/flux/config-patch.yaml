@@ -1,0 +1,12 @@
+spec:
+  template:
+    spec:
+      volumes:
+      - name: ssh-config
+        configMap:
+          name: flux-ssh-config
+      containers:
+      - name: flux
+        volumeMounts:
+        - name: ssh-config
+          mountPath: /root/.ssh
