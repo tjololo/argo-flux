@@ -42,8 +42,12 @@ print-credentials:
 	@echo "Demo cluster is ready. Gitea url: http://gitea.127.0.0.1.xip.io"
 	@echo "Gitea login. Username: demo Passord: Password#1"
 
+
 create-cluster: setup-cluster deploy-nginx install-gitea install-flux print-credentials
 
-## Cleanup
+
 delete-cluster:
 	kind delete cluster --name flux
+
+flux-sync:
+	fluxctl sync --k8s-fwd-ns flux
