@@ -2,19 +2,19 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: hello-world
-  name: hello-world
+    app: app-one
+  name: app-one
   namespace: demo
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: hello-world
+      app: app-one
   strategy: {}
   template:
     metadata:
       labels:
-        app: hello-world
+        app: app-one
     spec:
       containers:
       - image: tjololo/hello-go-web
