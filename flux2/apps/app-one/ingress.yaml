@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: app-one-ingress
+  namespace: demo
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+  - host: app-one.127.0.0.1.xip.io
+    http:
+      paths:
+      - path: /hello
+        backend:
+          serviceName: app-one-http
+          servicePort: http
