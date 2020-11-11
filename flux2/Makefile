@@ -27,7 +27,7 @@ install-flux:
 	--password=Password#1
 	flux create kustomization apps \
 	--source=applications \
-	--path="./flux/apps" \
+	--path="./flux2/apps" \
 	--prune=true \
 	--interval=1m \
 	--validation=client
