@@ -1,0 +1,27 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: chartmuseum
+  namespace: default
+spec:
+  releaseName: chartmuseum
+  chart:
+    spec:
+      chart: chartmuseum
+      sourceRef:
+        kind: HelmRepository
+        name: kubernetes-charts
+        namespace: default
+  interval: 5m
+  install:
+    remediation:
+      retries: 3
+  values:
+    ingress:
+      annotations:
+        kubernetes.io/ingress.class: nginx
+      enabled: true
+      hosts:
+        - name: chartmuseum.127.0.0.1.xip.io
+          path: /
+          tls: false
