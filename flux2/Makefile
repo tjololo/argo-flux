@@ -33,12 +33,7 @@ install-flux:
 	--validation=client
 	
 delete-flux:
-	fluxctl install \
-	--git-user=demo \
-	--git-email=demo@example.local \
-	--git-url=git@gitea-gitea-ssh.default.svc.cluster.local:demo/argo-flux \
-	--git-path=flux2/apps \
-	--namespace=flux | kubectl delete -f -
+	flux uninstall --crd
 
 print-credentials:
 	@echo "Demo cluster is ready. Gitea url: http://gitea.127.0.0.1.xip.io"
@@ -49,7 +44,7 @@ create-cluster: setup-cluster deploy-nginx install-gitea install-flux print-cred
 
 
 delete-cluster:
-	kind delete cluster --name flux
+	kind delete cluster --name flux2
 
 flux-sync:
 	flux reconcile kustomization apps
