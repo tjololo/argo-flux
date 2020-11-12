@@ -48,3 +48,4 @@ delete-cluster:
 
 flux-sync:
 	flux reconcile kustomization apps
+
