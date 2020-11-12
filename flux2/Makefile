@@ -9,18 +9,18 @@ deploy-nginx:
 	kubectl wait --namespace ingress-nginx --for=condition=ready pod --selector=app.kubernetes.io/component=controller --timeout=360s
 
 install-gitea:
-	helm repo add k8s-land https://charts.k8s.land
-	helm install gitea k8s-land/gitea -f install/gitea/values.yaml
+	helm repo add gitea-charts https://dl.gitea.io/charts/
+	helm install gitea gitea-charts/gitea -f install/gitea/values.yaml
 	sleep 5
-	kubectl wait --timeout=360s -n default --for=condition=available deployments.apps/gitea-gitea
-	kubectl wait --timeout=360s -n default --for=condition=ready pods/gitea-mariadb-0
+	kubectl wait --namespace default --for=condition=ready pod --selector=app.kubernetes.io/name=gitea --timeout=360s
 	sleep 2
 	./install/gitea/initialize.sh
+	kubectl apply -f install/gitea/gitea-svc.yaml
 
 install-flux:
 	flux install --arch=amd64
 	flux create source git applications \
-	--url=http://gitea-gitea-http.default.svc.cluster.local:3000/demo/argo-flux \
+	--url=http://gitea-local.default.svc.cluster.local:3000/demo/argo-flux \
 	--branch=master \
 	--interval=1m \
 	--username=demo \
@@ -38,6 +38,7 @@ delete-flux:
 print-credentials:
 	@echo "Demo cluster is ready. Gitea url: http://gitea.127.0.0.1.xip.io"
 	@echo "Gitea login. Username: demo Passord: Password#1"
+	@echo "Example application url: http://app-one.127.0.0.1.xip.io/hello"
 
 
 create-cluster: setup-cluster deploy-nginx install-gitea install-flux print-credentials
