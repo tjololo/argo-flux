@@ -10,7 +10,7 @@ deploy-nginx:
 
 install-gitea:
 	helm repo add gitea-charts https://dl.gitea.io/charts/
-	helm install gitea gitea-charts/gitea -f install/gitea/values.yaml
+	helm upgrade --install gitea gitea-charts/gitea -f install/gitea/values.yaml
 	sleep 5
 	kubectl wait --namespace default --for=condition=ready pod --selector=app.kubernetes.io/name=gitea --timeout=360s
 	sleep 2
