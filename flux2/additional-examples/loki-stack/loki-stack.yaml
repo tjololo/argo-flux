@@ -4,7 +4,7 @@ metadata:
   name: loki
   namespace: loki-stack
 spec:
-  releaseName: loki-stack
+  releaseName: loki
   chart:
     spec:
       chart: loki-stack
